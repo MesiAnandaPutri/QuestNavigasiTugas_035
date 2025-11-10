@@ -1,6 +1,7 @@
 package com.example.questnavigasitugas_035.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -142,14 +143,53 @@ fun Formulir(
                 )
             )
 
-            DropdownMenuBox(
-                label = stringResource(id = R.string.jenis_kelamin),
-                pilihan = listJk,
-                selectedOption = selectedJk,
-                onOptionSelected = onJkChange,
-                placeholder = stringResource(id = R.string.form_pilih_jk),
-                isError = isJkError // <-- Terapkan error state
-            )
+            Column(modifier = Modifier.fillMaxWidth()) {
+                // 1. Label
+                Text(
+                    text = stringResource(id = R.string.jenis_kelamin),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = if (isJkError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                    modifier = Modifier.padding(start = 4.dp, bottom = 4.dp)
+                )
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    listJk.forEach { item ->
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier
+                                .padding(end = 24.dp)
+                                .clickable { onJkChange(item) }
+                        ) {
+                            RadioButton(
+                                selected = (item == selectedJk),
+                                onClick = { onJkChange(item) },
+                                colors = RadioButtonDefaults.colors(
+                                    selectedColor = MaterialTheme.colorScheme.primary,
+                                    unselectedColor = if (isJkError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                                )
+                            )
+                            Text(
+                                text = item,
+                                color = if (isJkError) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+                    }
+                }
+
+                if (isJkError) {
+                    Text(
+                        text = stringResource(id = R.string.validation_error),
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.padding(start = 16.dp)
+                    )
+                }
+            }
+
 
             DropdownMenuBox(
                 label = stringResource(id = R.string.status_perkawinan),
