@@ -91,3 +91,41 @@ fun Formulir(
                     containerColor = MaterialTheme.colorScheme.primary
                 ),
                 navigationIcon = {
+                    IconButton(onClick = onKembaliClick) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Kembali",
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                }
+            )
+        }
+    ) { isiRuang ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = listOf(GradientStart, GradientEnd)
+                    )
+                )
+                .padding(paddingValues = isiRuang)
+                .padding(all = dimensionResource(id = R.dimen.padding_medium)),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_small))
+        ) {
+            OutlinedTextField(
+                value = nama,
+                onValueChange = onNamaChange,
+                label = { Text(text = stringResource(id = R.string.nama_lengkap)) },
+                placeholder = { Text(text = stringResource(id = R.string.form_nama_placeholder)) },
+                isError = isNamaError,
+                supportingText = {
+                    if (isNamaError) {
+                        Text(text = stringResource(id = R.string.validation_error), color = MaterialTheme.colorScheme.error)
+                    }
+                },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
