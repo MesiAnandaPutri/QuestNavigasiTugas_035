@@ -19,3 +19,31 @@ enum class Navigasi {
     Home,
     Formulir
 }
+
+@Composable
+fun DataApp(
+    navController: NavHostController = rememberNavController()
+) {
+    // --- State Hoisting untuk Formulir ---
+    var nama by remember { mutableStateOf("") }
+    var alamat by remember { mutableStateOf("") }
+    var selectedJk by remember { mutableStateOf("") }
+    var selectedStatus by remember { mutableStateOf("") }
+
+    // --- State untuk Validasi ---
+    var isNamaError by remember { mutableStateOf(false) }
+    var isAlamatError by remember { mutableStateOf(false) }
+    var isJkError by remember { mutableStateOf(false) }
+    var isStatusError by remember { mutableStateOf(false) }
+
+    // --- State untuk Jeda & Dialog ---
+    var isLoading by remember { mutableStateOf(false) }
+    var showDialog by remember { mutableStateOf(false) }
+
+    // --- Data Dropdown ---
+    val listJk = listOf("Laki-laki", "Perempuan")
+    val listStatus = listOf("Belum Kawin", "Kawin", "Cerai")
+
+    val coroutineScope = rememberCoroutineScope()
+
+    Scaffold { isiRuang ->
