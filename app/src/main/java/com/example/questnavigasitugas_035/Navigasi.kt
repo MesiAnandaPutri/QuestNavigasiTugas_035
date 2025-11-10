@@ -47,3 +47,12 @@ fun DataApp(
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold { isiRuang ->
+        NavHost(
+            navController = navController,
+            startDestination = Navigasi.Login.name,
+            modifier = Modifier.padding(paddingValues = isiRuang)
+        ) {
+            composable(route = Navigasi.Login.name) {
+                Dashbord(
+                    isLoading = isLoading,
+                    onLoginClick = {
