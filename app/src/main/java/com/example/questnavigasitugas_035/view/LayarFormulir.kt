@@ -187,3 +187,110 @@ fun Formulir(
                 )
             )
 
+            Spacer(modifier = Modifier.weight(1f))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                OutlinedButton(
+                    onClick = onKembaliClick,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(50.dp)
+                        .padding(end = 8.dp),
+                    shape = MaterialTheme.shapes.medium,
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = MaterialTheme.colorScheme.onSurface,
+                        containerColor = Color.Transparent
+                    ),
+                    border = ButtonDefaults.outlinedButtonBorder.copy(
+                        brush = Brush.horizontalGradient(
+                            colors = listOf(MaterialTheme.colorScheme.tertiary, MaterialTheme.colorScheme.secondary)
+                        ), width = 2.dp
+                    )
+                ) {
+                    Icon(Icons.Filled.ArrowBack, contentDescription = "Kembali", modifier = Modifier.size(20.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Text(text = stringResource(id = R.string.form_button_kembali))
+                }
+                Button(
+                    onClick = onSubmitClick,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(50.dp)
+                        .padding(start = 8.dp),
+                    shape = MaterialTheme.shapes.medium,
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 6.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    )
+                ) {
+                    Icon(Icons.Filled.Done, contentDescription = "Submit", modifier = Modifier.size(20.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Text(text = stringResource(id = R.string.submit))
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DropdownMenuBox(
+    label: String,
+    pilihan: List<String>,
+    selectedOption: String,
+    onOptionSelected: (String) -> Unit,
+    placeholder: String,
+    modifier: Modifier = Modifier,
+    isError: Boolean // <-- Parameter error
+) {
+    var expanded by remember { mutableStateOf(false) }
+
+    ExposedDropdownMenuBox(
+        expanded = expanded,
+        onExpandedChange = { expanded = !expanded },
+        modifier = modifier.fillMaxWidth()
+    ) {
+        OutlinedTextField(
+            modifier = Modifier
+                .menuAnchor()
+                .fillMaxWidth(),
+            readOnly = true,
+            value = selectedOption.ifEmpty { placeholder },
+            onValueChange = {},
+            label = { Text(label) },
+            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+            colors = ExposedDropdownMenuDefaults.outlinedTextFieldColors(
+                focusedBorderColor = MaterialTheme.colorScheme.secondary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                errorBorderColor = MaterialTheme.colorScheme.error,
+                focusedLabelColor = MaterialTheme.colorScheme.secondary,
+                unfocusedLabelColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                cursorColor = MaterialTheme.colorScheme.secondary,
+                focusedContainerColor = Color.White.copy(alpha = 0.9f),
+                unfocusedContainerColor = Color.White.copy(alpha = 0.7f),
+                errorContainerColor = Color.Red.copy(alpha = 0.1f)
+            ),
+            isError = isError, // <-- Terapkan error state
+            shape = MaterialTheme.shapes.medium
+        )
+        ExposedDropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+        ) {
+            pilihan.forEach { option ->
+                DropdownMenuItem(
+                    text = { Text(option) },
+                    onClick = {
+                        onOptionSelected(option)
+                        expanded = false
+                    },
+                    contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
+                )
+            }
+        }
+    }
+}
