@@ -135,3 +135,10 @@ private fun kembaliKeHome(
 ) {
     navController.popBackStack(route = Navigasi.Home.name, inclusive = false)
 }
+
+private fun kembaliKeLogin(
+    navController: NavHostController
+) {
+    navController.popBackStack(route = Navigasi.Login.name, inclusive = true)
+    navController.navigate(Navigasi.Login.name)
+}
