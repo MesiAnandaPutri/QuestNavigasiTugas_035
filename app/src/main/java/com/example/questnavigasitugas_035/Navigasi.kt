@@ -98,3 +98,34 @@ fun DataApp(
                         kembaliKeHome(navController)
                     },
                     onSubmitClick = {
+                        // Validasi semua field
+                        isNamaError = nama.isEmpty()
+                        isAlamatError = alamat.isEmpty()
+                        isJkError = selectedJk.isEmpty()
+                        isStatusError = selectedStatus.isEmpty()
+
+                        if (!isNamaError && !isAlamatError && !isJkError && !isStatusError) {
+                            showDialog = true
+                        }
+                    },
+
+                    showDialog = showDialog,
+                    onDismissDialog = { showDialog = false },
+                    onConfirmDialog = {
+                        showDialog = false
+
+                        // --- KODE BARU UNTUK MENGOSONGKAN FORM ---
+                        nama = ""
+                        alamat = ""
+                        selectedJk = ""
+                        selectedStatus = ""
+                        // --- AKHIR KODE BARU ---
+
+                        // Pindah ke halaman list
+                        kembaliKeHome(navController)
+                    }
+                )
+            }
+        }
+    }
+}
