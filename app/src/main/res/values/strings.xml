@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">QuestNavigasiTugas_035</string>
+    <string name="submit">Submit</string>
+    <string name="back">Back</string>
+    <string name="nama_lengkap">NAMA LENGKAP</string>
+    <string name="jenis_kelamin">JENIS KELAMIN</string>
+    <string name="alamat">ALAMAT</string>
+    <string name="tampil">Tampilan Data</string>
+    <string name="home">Form Isian</string>
+
+    <string name="login_title">Selamat Datang</string>
+    <string name="login_user_info">Mesi Ananda Putri\n20230140035</string>
+    <string name="login_button">Masuk</string>
+
+    <string name="list_title">List Daftar Peserta</string>
+    <string name="list_button_beranda">Beranda</string>
+    <string name="list_button_formulir">Formulir</string>
+    <string name="status_perkawinan">STATUS PERKAWINAN</string>
+
+    <string name="form_title">Formulir Pendaftaran</string>
+    <string name="form_button_kembali">Kembali</string>
+    <string name="form_nama_placeholder">Isikan nama lengkap</string>
+    <string name="form_alamat_placeholder">Isikan alamat</string>
+    <string name="form_pilih_status">Pilih status kawin</string>
+    <string name="form_pilih_jk">Pilih jenis kelamin</string>
+
+    <string name="validation_error">Tidak boleh kosong</string>
 </resources>
