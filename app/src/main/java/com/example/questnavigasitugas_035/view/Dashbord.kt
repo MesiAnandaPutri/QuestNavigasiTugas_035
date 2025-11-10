@@ -60,3 +60,33 @@ fun Dashbord(
                 contentDescription = "Logo",
                 modifier = Modifier
                     .size(150.dp)
+                    .clip(CircleShape)
+                    .border(
+                        width = 4.dp,
+                        color = MaterialTheme.colorScheme.secondary,
+                        shape = CircleShape
+                    ),
+                contentScale = ContentScale.Crop
+            )
+
+            Text(
+                text = stringResource(id = R.string.login_user_info),
+                textAlign = TextAlign.Center,
+                fontSize = 18.sp,
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.9f),
+                modifier = Modifier.padding(bottom = 40.dp)
+            )
+
+            Button(
+                onClick = onLoginClick,
+                enabled = !isLoading,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp),
+                shape = MaterialTheme.shapes.medium,
+                elevation = ButtonDefaults.buttonElevation(defaultElevation = 8.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                )
+            ) {
