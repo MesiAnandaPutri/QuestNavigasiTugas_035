@@ -31,3 +31,48 @@ data class FormData(
     val status: String,
     val alamat: String
 )
+
+private val listPendaftar = listOf(
+    FormData(
+        nama = "Asroni Sukirman",
+        gender = "Laki-laki",
+        status = "Cerai",
+        alamat = "Sleman"
+    ),
+    FormData(
+        nama = "Aprilia Kurniati",
+        gender = "Perempuan",
+        status = "Lajang",
+        alamat = "Bantul"
+    ),
+    FormData(
+        nama = "Haris Setyawan",
+        gender = "Laki-laki",
+        status = "Kawin",
+        alamat = "Jogja"
+    ),
+    FormData(
+        nama = "Haris Setyawan",
+        gender = "Laki-laki",
+        status = "Kawin",
+        alamat = "Jogja"
+    ),
+    FormData(
+        nama = "Haris Setyawan",
+        gender = "Laki-laki",
+        status = "Kawin",
+        alamat = "Jogja"
+    ),
+    FormData(
+        nama = "Haris Setyawan",
+        gender = "Laki-laki",
+        status = "Kawin",
+        alamat = "Jogja"
+    ),
+    FormData(
+        nama = "Haris Setyawan",
+        gender = "Laki-laki",
+        status = "Kawin",
+        alamat = "Jogja"
+    )
+)
