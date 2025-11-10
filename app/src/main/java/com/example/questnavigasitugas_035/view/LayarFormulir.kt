@@ -142,3 +142,48 @@ fun Formulir(
                 )
             )
 
+            DropdownMenuBox(
+                label = stringResource(id = R.string.jenis_kelamin),
+                pilihan = listJk,
+                selectedOption = selectedJk,
+                onOptionSelected = onJkChange,
+                placeholder = stringResource(id = R.string.form_pilih_jk),
+                isError = isJkError // <-- Terapkan error state
+            )
+
+            DropdownMenuBox(
+                label = stringResource(id = R.string.status_perkawinan),
+                pilihan = listStatus,
+                selectedOption = selectedStatus,
+                onOptionSelected = onStatusChange,
+                placeholder = stringResource(id = R.string.form_pilih_status),
+                isError = isStatusError // <-- Terapkan error state
+            )
+
+            OutlinedTextField(
+                value = alamat,
+                onValueChange = onAlamatChange,
+                label = { Text(text = stringResource(id = R.string.alamat)) },
+                placeholder = { Text(text = stringResource(id = R.string.form_alamat_placeholder)) },
+                isError = isAlamatError,
+                supportingText = {
+                    if (isAlamatError) { // <-- Perbaikan typo
+                        Text(text = stringResource(id = R.string.validation_error), color = MaterialTheme.colorScheme.error)
+                    }
+                },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                shape = MaterialTheme.shapes.medium,
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MaterialTheme.colorScheme.secondary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                    errorBorderColor = MaterialTheme.colorScheme.error,
+                    focusedLabelColor = MaterialTheme.colorScheme.secondary,
+                    unfocusedLabelColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                    cursorColor = MaterialTheme.colorScheme.secondary,
+                    focusedContainerColor = Color.White.copy(alpha = 0.9f),
+                    unfocusedContainerColor = Color.White.copy(alpha = 0.7f),
+                    errorContainerColor = Color.Red.copy(alpha = 0.1f)
+                )
+            )
+
