@@ -207,3 +207,27 @@ fun TampilData(
         }
     }
 }
+
+@Composable
+fun CardItem(peserta: FormData, modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(dimensionResource(id = R.dimen.padding_medium)),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            InfoRow(label = stringResource(id = R.string.nama_lengkap), value = peserta.nama)
+            InfoRow(label = stringResource(id = R.string.jenis_kelamin), value = peserta.gender)
+            Divider(color = MediumGray.copy(alpha = 0.3f), thickness = 1.dp, modifier = Modifier.padding(vertical = 4.dp))
+            InfoRow(label = stringResource(id = R.string.status_perkawinan), value = peserta.status)
+            InfoRow(label = stringResource(id = R.string.alamat), value = peserta.alamat)
+        }
+    }
+}
