@@ -56,3 +56,45 @@ fun DataApp(
                 Dashbord(
                     isLoading = isLoading,
                     onLoginClick = {
+                        coroutineScope.launch {
+                            isLoading = true
+                            delay(2000L)
+                            isLoading = false
+                            navController.navigate(Navigasi.Home.name)
+                        }
+                    }
+                )
+            }
+            composable(route = Navigasi.Home.name) {
+                TampilData(
+                    onBerandaClick = {
+                        kembaliKeLogin(navController)
+                    },
+                    onFormulirClick = {
+                        navController.navigate(Navigasi.Formulir.name)
+                    }
+                )
+            }
+            composable(route = Navigasi.Formulir.name) {
+                Formulir(
+                    nama = nama,
+                    onNamaChange = { nama = it; isNamaError = false },
+                    isNamaError = isNamaError,
+                    alamat = alamat,
+                    onAlamatChange = { alamat = it; isAlamatError = false },
+                    isAlamatError = isAlamatError,
+
+                    selectedJk = selectedJk,
+                    onJkChange = { selectedJk = it; isJkError = false },
+                    isJkError = isJkError,
+                    listJk = listJk,
+
+                    selectedStatus = selectedStatus,
+                    onStatusChange = { selectedStatus = it; isStatusError = false },
+                    isStatusError = isStatusError,
+                    listStatus = listStatus,
+
+                    onKembaliClick = {
+                        kembaliKeHome(navController)
+                    },
+                    onSubmitClick = {
