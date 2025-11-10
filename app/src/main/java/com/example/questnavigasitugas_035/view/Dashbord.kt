@@ -55,3 +55,8 @@ fun Dashbord(
                 color = MaterialTheme.colorScheme.primary,
             )
 
+            Image(
+                painter = painterResource(id = R.drawable.formulir),
+                contentDescription = "Logo",
+                modifier = Modifier
+                    .size(150.dp)
